@@ -1,0 +1,71 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "./assets/shards.min.css";
+@import "./assets/shards-dashboard.min.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+.business-header {
+	height: 70vh;
+	min-height: 300px;
+	padding-top: 69px;
+	background: url("./assets/img/owl.jpg") center center no-repeat scroll;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	-o-background-size: cover;
+}
+
+.opaque {
+	background-color: rgba(0, 0, 0, 0) !important;
+	transition: 0.5s;
+	border-bottom: 1px solid white;
+}
+
+.opaque li > a {
+	color: white;
+}
+
+nav:not(.opaque) {
+	background-color: white !important;
+	transition: 0.5s;
+	border-bottom: 1px solid #eee;
+	padding: 0.4rem 1.5rem;
+}
+
+nav:not(.homepage) {
+	background-color: #333;
+}
+
+.nav-item fa-icon,
+button fa-icon {
+	margin-right: 0.5em;
+}
+
+section.main-content-container {
+	padding-top: 60px;
+}
+
+#lastresults {
+	background-image: linear-gradient(to bottom, transparent 0, #000 120%),
+		url("./assets/img/forest.jpg");
+	background-repeat: no-repeat;
+	background-position: 58.7585% 75.3793%;
+	background-size: cover;
+}
+
+table.table td {
+	vertical-align: inherit;
+}
+
+//simple notification height fix
+.simple-notification.error {
+	height: inherit !important;
+}
+
+/**** ANIMATIONS ****/
+.zoom {
+	transition: transform 0.2s;
+	&:hover {
+		transform: scale(1.02);
+	}
+}
