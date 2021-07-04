@@ -1,0 +1,76 @@
+<div class="container">
+	<div class="signup-form-wrapper">
+		<form class="signup-form" [formGroup]="signupForm" novalidate [ngClass]="{ 'was-validated': submitted }">
+			<div class="logo">
+				<i class="fa fa-trophy fa-2x"></i>
+			</div>
+			<h3>Create a new account:</h3>
+			<div class="form-group row">
+				<div class="col-xs-12 col-sm-12">
+					<label for="email">E-mail:</label>
+					<input
+						class="form-control"
+						type="email"
+						name="email"
+						id="email"
+						formControlName="email"
+						required
+					/>
+					<div class="invalid-tooltip">
+						Please type a valid email.
+					</div>
+				</div>
+			</div>
+			<div class="form-group row" [ngClass]="{ 'has-error': signupForm.touched && !name.valid }">
+				<div class="col-xs-12 col-sm-12">
+					<label for="name">Full name:</label>
+					<input
+						class="form-control"
+						type="text"
+						name="name"
+						id="name"
+						formControlName="name"
+						required
+					/>
+					<div class="invalid-tooltip">
+						Please type a valid name.
+					</div>
+				</div>
+			</div>
+			<div class="form-group row" formGroupName="passwords"
+				 [ngClass]="{ 'has-error':  submitted && !passwords.valid }">
+				<div class="col-sm-6 col-xs-12">
+					<label for="password">Password:</label>
+					<input
+						class="form-control"
+						type="password"
+						name="password"
+						id="password"
+						formControlName="password"
+						required
+					/>
+					<div class="invalid-tooltip">
+						Passwords are required.
+					</div>
+				</div>
+				<div class="col-sm-6 col-xs-12">
+					<label for="password">Password again:</label>
+					<input
+						class="form-control"
+						type="password"
+						name="confirmPassword"
+						id="confirmPassword"
+						formControlName="confirmPassword"
+						required
+					/>
+				</div>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-block btn-primary" (click)="signUp()" type="button">Sign up</button>
+			</div>
+			<div class="form-group">
+				Already have an account? <a href="#" routerLink="/login" role="link">Log in.</a>
+			</div>
+		</form>
+	</div>
+</div>

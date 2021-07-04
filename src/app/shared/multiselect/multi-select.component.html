@@ -1,0 +1,10 @@
+<ng-select
+	[items]="data"
+	bindLabel="{{label_property_name}}"
+	[multiple]="true"
+	class="custom"
+	[hideSelected]="true"
+	[(ngModel)]="selectedData"
+	(change)="onChange($event)"
+>
+</ng-select>

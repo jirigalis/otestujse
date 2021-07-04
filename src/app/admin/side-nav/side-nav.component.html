@@ -1,0 +1,110 @@
+<aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
+	<div class="nav-wrapper">
+		<h6 class="main-sidebar__nav-title">Dashboards</h6>
+		<ul class="nav nav--no-border flex-column">
+			<li class="nav-item">
+				<a
+					class="nav-link"
+					routerLink="/admin"
+					routerLinkActive="active"
+					[routerLinkActiveOptions]="{ exact: true }"
+				>
+					<fa-icon icon="globe"></fa-icon>
+					<span>Home Dashboard</span>
+				</a>
+			</li>
+		</ul>
+		<h6 class="main-sidebar__nav-title">Items</h6>
+		<ul class="nav nav--no-border flex-column">
+			<li class="nav-item">
+				<a
+					class="nav-link"
+					routerLink="/admin/item"
+					routerLinkActive="active"
+				>
+					<fa-icon icon="camera"></fa-icon>
+					<span>Items Dashboard</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a
+					class="nav-link"
+					routerLink="/admin/add-item"
+					routerLinkActive="active"
+				>
+					<fa-icon icon="plus"></fa-icon>
+					<span>Create Item</span>
+				</a>
+			</li>
+		</ul>
+		<h6 class="main-sidebar__nav-title">Categories</h6>
+		<ul class="nav nav--no-border flex-column">
+			<li class="nav-item">
+				<a
+					class="nav-link"
+					routerLink="/admin/category"
+					routerLinkActive="active"
+				>
+					<fa-icon icon="folder-open"></fa-icon>
+					<span>Categories Dashboard</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a
+					class="nav-link"
+					routerLink="/admin/add-category"
+					routerLinkActive="active"
+				>
+					<fa-icon icon="plus"></fa-icon>
+					<span>Add Category</span>
+				</a>
+			</li>
+		</ul>
+		<h6 class="main-sidebar__nav-title">Questions</h6>
+		<ul class="nav nav--no-borders flex-column">
+			<li class="nav-item">
+				<a
+					class="nav-link"
+					routerLink="/admin/question"
+					routerLinkActive="active"
+				>
+					<fa-icon icon="th-list"></fa-icon>
+					<span>Questions Dashboard</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a
+					class="nav-link"
+					routerLink="/admin/add-question"
+					routerLinkActive="active"
+				>
+					<fa-icon icon="plus"></fa-icon>
+					<span>Add Question</span>
+				</a>
+			</li>
+		</ul>
+		<h6 class="main-sidebar__nav-title">Users</h6>
+		<ul class="nav nav--no-borders flex-column">
+			<li class="nav-item">
+				<a
+					class="nav-link"
+					routerLink="/admin/user"
+					routerLinkActive="active"
+				>
+					<fa-icon icon="user"></fa-icon>
+					<span>Users Dashboard</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a
+					class="nav-link"
+					routerLink="/admin/add-user"
+					routerLinkActive="active"
+				>
+					<fa-icon icon="plus"></fa-icon>
+					<span>Add User</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</aside>

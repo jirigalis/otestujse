@@ -1,0 +1,18 @@
+<div class="page-header row no-gutters py-4">
+	<div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+		<span class="text-uppercase page-subtitle">New item</span>
+		<h3 class="page-title">Add new Category</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-9 col-md-12">
+		<div class="card card-small mb-3">
+			<div class="card-body">
+				<category-form
+					[category]="newCategory"
+					[submitFunction]="onSubmit"
+				></category-form>
+			</div>
+		</div>
+	</div>
+</div>

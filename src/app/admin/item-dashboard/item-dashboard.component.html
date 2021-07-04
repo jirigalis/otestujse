@@ -1,0 +1,62 @@
+<div class="page-header row no-gutters py-4">
+	<div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+		<span class="text-uppercase page-subtitle">Overview</span>
+		<h3 class="page-title">Items</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col">
+		<table
+			datatable
+			[dtOptions]="dtOptions"
+			[dtTrigger]="dtTrigger"
+			class="table row-border hover"
+		>
+			<thead class="bg-light">
+				<tr>
+					<th>#</th>
+					<th>Name</th>
+					<th>Latin name</th>
+					<th>Description</th>
+					<th>Level</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let item of items">
+					<td>{{ item.id }}</td>
+					<td>{{ item.name }}</td>
+					<td>{{ item.latin_name }}</td>
+					<td>{{ item.description }}</td>
+					<td>
+						<span class="badge badge-pill badge-success">{{
+							item.level
+						}}</span>
+					</td>
+					<td>
+						<div class="btn-group btn-group-sm" role="group">
+							<button
+								type="button"
+								class="btn btn-white"
+								(click)="editItem(item.id)"
+								placement="bottom"
+								ngbTooltip="Edit this item"
+							>
+								<fa-icon icon="pencil-alt"></fa-icon>
+							</button>
+							<button
+								type="button"
+								class="btn btn-white"
+								(click)="deleteItem(item.id)"
+								placement="bottom"
+								ngbTooltip="Delete this question"
+							>
+								<fa-icon icon="trash"></fa-icon>
+							</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

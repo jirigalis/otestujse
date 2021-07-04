@@ -1,0 +1,64 @@
+<section class="mb-4 main-content-container container">
+	<div class="page-header no-gutters py-4 row">
+		<div class="col-12 col-sm-4">
+			<span>Detail kategorie</span>
+			<h3 class="page-title">{{ category.name }}</h3>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-3 col-md-4 col-sm-12">
+			<img
+				class="img-thumbnail float-left"
+				[src]="DomSanitizerService.bypassSecurityTrustUrl(category.img)"
+			/>
+		</div>
+		<div class="col-lg-9 col-md-8 col-sm-12">
+			<p>{{ category.description }}</p>
+			<p>
+				<button
+					class="btn btn-primary mr-2"
+					(click)="playQuiz(category.id)"
+				>
+					<fa-icon icon="play"></fa-icon>
+					Spustit rychlý kvíz
+				</button>
+
+				<button
+					class="btn btn-outline-primary"
+					(click)="configureQuiz(category.id)"
+				>
+					<fa-icon icon="graduation-cap"></fa-icon>
+					Trénovat
+				</button>
+			</p>
+		</div>
+	</div>
+</section>
+<section class="border-top border-bottom bg-light mb-4">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h4 class="mt-4">Náhled kategorie</h4>
+				<div class="row mb-4">
+					<div
+						class="col-sm-12 col-md-6 col-lg-3"
+						*ngFor="let t of thumbnails"
+					>
+						<item-thumbnail [item]="t"></item-thumbnail>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="mb-4">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h4 class="mt-4">Tady budou vybrané výsledky kvízů</h4>
+				<p>Lorem ipsum dolor sit amet</p>
+			</div>
+		</div>
+	</div>
+</section>

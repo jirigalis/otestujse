@@ -1,0 +1,110 @@
+<form #categoryForm="ngForm" (ngSubmit)="onSubmit(categoryForm.value)">
+	<div class="row">
+		<div class="col-sm-12 col-md-6">
+			<div class="form-group">
+				<label for="name">Name:</label>
+				<input
+					type="text"
+					[(ngModel)]="categoryModel.name"
+					id="name"
+					name="name"
+					#name="ngModel"
+					[ngClass]="{
+						'is-invalid': !name.valid && name.touched,
+						'form-control': true
+					}"
+					required
+				/>
+				<div
+					*ngIf="!name.valid && name.touched"
+					class="invalid-feedback"
+				>
+					This field cannot be empty.
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="description">Description:</label>
+				<textarea
+					class="form-control"
+					id="description"
+					name="description"
+					[(ngModel)]="categoryModel.description"
+				></textarea>
+			</div>
+
+			<div class="form-group">
+				<label for="status">Status:</label>
+				<select
+					class="form-control"
+					id="status"
+					name="status"
+					[(ngModel)]="categoryModel.status"
+				>
+					<option value="1">1 - Active</option>
+					<option value="2">2 - Disabled</option>
+					<option value="3">3 - Premium</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-sm-12 col-md-6">
+			<div class="form-group">
+				<label for="description">Image :</label>
+				<div class="custom-file">
+					<input
+						type="file"
+						class="custom-file-input"
+						[(ngModel)]="categoryModel.imgPath"
+						id="img"
+						name="img"
+						#imgPath="ngModel"
+						[ngClass]=""
+						(change)="parseImage($event)"
+						accept=".jpg,.jpeg,.png"
+					/>
+					<label class="custom-file-label" for="img">
+						<ng-template
+							[ngIf]="categoryModel.imgPath"
+							[ngIfElse]="noImgSet"
+							>{{ categoryModel.imgPath }}</ng-template
+						>
+						<ng-template #noImgSet> Image/icon: </ng-template>
+					</label>
+				</div>
+				<div
+					*ngIf="!imgPath.valid && imgPath.touched"
+					class="invalid-feedback"
+				>
+					This field cannot be empty.
+				</div>
+			</div>
+			<div class="mb-3 text-center uploadImgWrapper">
+				<fa-icon
+					icon="circle-notch"
+					animation="spin"
+					size="4x"
+					*ngIf="loadingImg"
+				></fa-icon>
+				<img
+					*ngIf="categoryModel.img && !loadingImg"
+					[src]="
+						DomSanitizerService.bypassSecurityTrustUrl(
+							categoryModel.img
+						)
+					"
+					class="img-thumbnail rounded"
+				/>
+			</div>
+		</div>
+	</div>
+
+	<input
+		type="submit"
+		class="btn btn-success pull-right"
+		[disabled]="!categoryForm.form.valid"
+		value="Save Category"
+	/>
+	<a routerLink="/admin/category" class="btn btn-secondary pull-right mr-2"
+		>Cancel</a
+	>
+</form>

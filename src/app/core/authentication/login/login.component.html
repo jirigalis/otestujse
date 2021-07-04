@@ -1,0 +1,41 @@
+<div class="container">
+	<div class="login-form-wrapper">
+		<form class="login-form" [formGroup]="loginForm" novalidate [ngClass]="{ 'was-validated': submitted }">
+			<div class="logo">
+				<i class="fa fa-trophy fa-2x"></i>
+			</div>
+			<h3>Log in:</h3>
+			<div class="form-group" [ngClass]="{ 'has-error': loginForm.touched && !email.valid }">
+				<label for="email">E-mail:</label>
+				<input
+					class="form-control"
+					type="email"
+					name="email"
+					id="email"
+					formControlName = "email"
+					required
+				/>
+				<div class="invalid-tooltip">
+					Please type a valid email.
+				</div>
+			</div>
+			<div class="form-group" [ngClass]="{ 'has-error': loginForm.touched && !password.valid }">
+				<label for="password">Password:</label>
+				<input
+					class="form-control"
+					type="password"
+					name="password"
+					id="password"
+					formControlName = "password"
+					required
+				/>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-block btn-primary" (click)="login()" type="button">Sign in</button>
+			</div>
+			<div class="form-group">
+				Do not have an account? <a class="register-link" routerLink="/signup" routerLinkActive="active">Register.</a>
+			</div>
+		</form>
+	</div>
+</div>

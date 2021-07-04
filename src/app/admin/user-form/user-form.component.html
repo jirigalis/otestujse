@@ -1,0 +1,153 @@
+<form
+	#userForm="ngForm"
+	[mustMatch]="['password', 'confirmPassword']"
+	novalidate
+>
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			<label for="firstname">First name:</label>
+			<input
+				type="text"
+				[(ngModel)]="userModel.firstname"
+				id="firstname"
+				name="firstname"
+				#firstname="ngModel"
+				class="form-control"
+			/>
+		</div>
+		<div class="form-group col-md-6">
+			<label for="lastname">Last name:</label>
+			<input
+				type="text"
+				[(ngModel)]="userModel.lastname"
+				name="lastname"
+				#lastname="ngModel"
+				class="form-control"
+			/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="email">E-mail:</label>
+		<input
+			type="email"
+			[(ngModel)]="userModel.email"
+			name="email"
+			#email="ngModel"
+			class="form-control"
+			[ngClass]="{
+				'is-invalid': userForm.submitted && email.invalid
+			}"
+			required
+		/>
+		<div
+			*ngIf="userForm.submitted && email.invalid"
+			class="invalid-feedback"
+		>
+			<div *ngIf="email.errors.required">Email is required</div>
+			<div *ngIf="email.errors.email">
+				Email must be a valid email address
+			</div>
+		</div>
+	</div>
+	<div class="form-row">
+		<div class="form-group col">
+			<label>Password</label>
+			<input
+				type="password"
+				name="password"
+				class="form-control"
+				[(ngModel)]="userModel.password"
+				#password="ngModel"
+				[ngClass]="{
+					'is-invalid': userForm.submitted && password.invalid
+				}"
+				[required]="!editMode"
+				minlength="6"
+			/>
+			<div
+				*ngIf="userForm.submitted && password.invalid"
+				class="invalid-feedback"
+			>
+				<div *ngIf="password.errors.required">Password is required</div>
+				<div *ngIf="password.errors.minlength">
+					Password must be at least 6 characters
+				</div>
+			</div>
+		</div>
+		<div class="form-group col">
+			<label>Confirm Password</label>
+			<input
+				type="password"
+				name="confirmPassword"
+				class="form-control"
+				[(ngModel)]="userModel.confirmPassword"
+				#confirmPassword="ngModel"
+				[ngClass]="{
+					'is-invalid': userForm.submitted && confirmPassword.invalid
+				}"
+				[required]="!editMode"
+			/>
+			<div
+				*ngIf="userForm.submitted && confirmPassword.invalid"
+				class="invalid-feedback"
+			>
+				<div *ngIf="confirmPassword.errors.required">
+					Confirm Password is required
+				</div>
+				<div *ngIf="confirmPassword.errors.mustMatch">
+					Passwords must match
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="from-group">
+		<h6 class="mb-2">Role:</h6>
+		<div class="custom-control custom-radio mb-2">
+			<input
+				type="radio"
+				id="role1"
+				name="role"
+				class="custom-control-input"
+				[value]="1"
+				[(ngModel)]="userModel.role"
+			/>
+			<label for="role1" class="custom-control-label"
+				>Administrator</label
+			>
+		</div>
+		<div class="custom-control custom-radio mb-2">
+			<input
+				type="radio"
+				id="role2"
+				name="role"
+				class="custom-control-input"
+				[value]="2"
+				[(ngModel)]="userModel.role"
+			/>
+			<label for="role2" class="custom-control-label">User</label>
+		</div>
+		<div class="custom-control custom-radio mb-2">
+			<input
+				type="radio"
+				id="role3"
+				name="role"
+				class="custom-control-input"
+				[value]="3"
+				[(ngModel)]="userModel.role"
+			/>
+			<label for="role3" class="custom-control-label">Guest</label>
+		</div>
+	</div>
+	<div class="form-group">
+		<input
+			type="submit"
+			value="Save"
+			class="btn btn-primary pull-right"
+			[disabled]="!userForm.form.valid || !userForm.dirty"
+			(click)="onSubmit(userModel)"
+		/>
+		<a routerLink="/admin/user" class="btn btn-secondary mr-1 pull-right"
+			>Cancel</a
+		>
+	</div>
+</form>

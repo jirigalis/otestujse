@@ -1,0 +1,66 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+:host {
+	background-image: url('../../../../assets/img/login-background-1.jpg');
+	background-position: 50% 50%;
+	height: calc(100vh - 72px);
+	width: 100vw;
+	display: block;
+	.login-form-wrapper {
+		height: calc(100vh - 120px);
+	}
+	.login-form {
+		color: white;
+		max-width: 400px;
+		margin: 0 auto;
+		padding: 20px;
+		background-color: rgba(0,0,0,0.55);
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+
+		.logo {
+			margin: 0 auto;
+			border-radius: 50px;
+			background-color: #87c54e;
+			width: 60px;
+			height: 60px;
+			text-align: center;
+			padding-top: 15px;
+			position: relative;
+			top: -50px;
+		}
+
+		h3 {
+			color: white;
+		}
+
+		a {
+			font-weight: bold;
+		}
+
+		input[type=text], input[type=password], input[type=email]{
+			border: none;
+			border-bottom: 2px solid white;
+			border-radius: 0px;
+			background: none;
+			margin-bottom: 10px;
+			color: white;
+
+			&:focus {
+				background: white;
+				color: #333;
+			}
+
+		}
+
+		.has-error {
+			input[type=password], input[type=email] {
+				border-bottom: 2px solid $danger;
+				color: $danger;
+			}
+		}
+
+	}
+}

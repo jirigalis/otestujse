@@ -1,0 +1,27 @@
+<div
+	class="card card-small card-post h-100 zoom shadow-lg category-card"
+	(click)="openCategoryDetail(category.id)"
+>
+	<div
+		class="card-post__image"
+		style="background-image: url('{{ category.img }}');"
+	></div>
+	<div class="card-body">
+		<h5 class="card-title">
+			<span class="text-fiord-blue">{{ category.name }}</span>
+		</h5>
+		<p class="card-text">
+			{{ category.description }}
+		</p>
+	</div>
+	<div class="card-footer border-top d-flex">
+		<button
+			type="button"
+			class="btn btn-sm btn-white btn-primary ml-auto"
+			(click)="playQuiz(category.id)"
+		>
+			<fa-icon icon="play-circle"></fa-icon>
+			Spustit kvíz
+		</button>
+	</div>
+</div>

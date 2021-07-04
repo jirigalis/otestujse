@@ -1,0 +1,334 @@
+<form #itemForm="ngForm">
+	<div class="row">
+		<div class="col-lg-8 col-md-12">
+			<div class="card card-small mb-4">
+				<div class="card-header border-bottom">
+					<h6 class="m-0">Basic info</h6>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<div class="row">
+							<div class="col">
+								<div class="form-group">
+									<label for="name">Name:</label>
+									<input
+										type="text"
+										[(ngModel)]="itemModel.name"
+										id="name"
+										name="name"
+										#name="ngModel"
+										[ngClass]="{
+											'is-invalid':
+												!name.valid && name.touched,
+											'form-control': true
+										}"
+										required
+									/>
+								</div>
+								<div
+									*ngIf="!name.valid && name.touched"
+									class="invalid-feedback"
+								>
+									This field cannot be empty
+								</div>
+							</div>
+							<div class="col">
+								<div class="form-group">
+									<label for="name">Latin name:</label>
+									<input
+										type="text"
+										[(ngModel)]="itemModel.latin_name"
+										id="latin_name"
+										name="latin_name"
+										#latin_name="ngModel"
+										class="form-control"
+									/>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<div class="form-group">
+									<h6 class="mb-2">Attachment:</h6>
+									<div class="custom-file">
+										<input
+											type="file"
+											class="custom-file-input"
+											[(ngModel)]="
+												itemModel.attachmentPath
+											"
+											id="attachment"
+											name="attachment"
+											#attachmentPath="ngModel"
+											(change)="parseImage($event)"
+											accept=".jpg,.jpeg,.png"
+											[required]="!editMode"
+											[ngClass]="{
+												'is-invalid':
+													!attachment.valid &&
+													attachment.touched,
+												'form-control': true
+											}"
+										/>
+										<label
+											class="custom-file-label"
+											for="attachment"
+										>
+											<ng-template
+												[ngIf]="
+													itemModel.attachmentPath
+												"
+												[ngIfElse]="noImgSet"
+												>{{
+													itemModel.attachmentPath
+												}}</ng-template
+											>
+											<ng-template #noImgSet
+												>Attachment</ng-template
+											>
+										</label>
+									</div>
+									<div
+										*ngIf="
+											!attachment.valid &&
+											attachment.touched
+										"
+										class="invalid-feedback"
+									>
+										This field cannot be empty
+									</div>
+								</div>
+								<div class="mb-3 text-center uploadImgWrapper">
+									<fa-icon
+										icon="circle-notch"
+										[spin]="true"
+										size="4x"
+										*ngIf="loadingImg"
+									></fa-icon>
+									<img
+										*ngIf="attachment && !loadingImg"
+										[src]="
+											DomSanitizerService.bypassSecurityTrustUrl(
+												attachment
+											)
+										"
+										class="img-thumbnail rounded"
+									/>
+									<img
+										*ngIf="photoPath != '' && !attachment"
+										[src]="photoPath"
+										class="img-thumbnail rounded"
+									/>
+								</div>
+							</div>
+							<!-- Difficulty -->
+							<div class="col">
+								<div class="row">
+									<div class="col">
+										<div class="form-group">
+											<h6 class="mb-2">Difficulty:</h6>
+											<div
+												class="custom-control custom-radio mb-2"
+											>
+												<input
+													type="radio"
+													id="level1"
+													name="level"
+													class="custom-control-input"
+													[value]="1"
+													[(ngModel)]="
+														itemModel.level
+													"
+												/>
+												<label
+													for="level1"
+													class="custom-control-label"
+													>1</label
+												>
+											</div>
+											<div
+												class="custom-control custom-radio mb-2"
+											>
+												<input
+													type="radio"
+													id="level2"
+													name="level"
+													class="custom-control-input"
+													[value]="2"
+													[(ngModel)]="
+														itemModel.level
+													"
+												/>
+												<label
+													for="level2"
+													class="custom-control-label"
+													>2</label
+												>
+											</div>
+											<div
+												class="custom-control custom-radio mb-2"
+											>
+												<input
+													type="radio"
+													id="level3"
+													name="level"
+													class="custom-control-input"
+													[value]="3"
+													[(ngModel)]="
+														itemModel.level
+													"
+												/>
+												<label
+													for="level3"
+													class="custom-control-label"
+													>3</label
+												>
+											</div>
+											<div
+												class="custom-control custom-radio mb-2"
+											>
+												<input
+													type="radio"
+													id="level4"
+													name="level"
+													class="custom-control-input"
+													[value]="4"
+													[(ngModel)]="
+														itemModel.level
+													"
+												/>
+												<label
+													for="level4"
+													class="custom-control-label"
+													>4</label
+												>
+											</div>
+											<div
+												class="custom-control custom-radio mb-2"
+											>
+												<input
+													type="radio"
+													id="level5"
+													name="level"
+													class="custom-control-input"
+													[value]="5"
+													[(ngModel)]="
+														itemModel.level
+													"
+												/>
+												<label
+													for="level5"
+													class="custom-control-label"
+													>5</label
+												>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-12">
+			<div class="card card-small mb-4">
+				<div class="card-header border-bottom">Summary</div>
+				<div class="card-body p-0">
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item p-3">
+							<span class="d-flex">
+								<fa-icon icon="plus-square"></fa-icon
+								><span class="mx-2">Created:</span>
+								<span class="ml-auto">{{
+									itemModel.created_at
+										| amParse: "YYYY-MM-DD hh:mm:ss"
+										| amDateFormat: "DD. MM. YYYY, hh:mm"
+								}}</span>
+							</span>
+							<span class="d-flex">
+								<fa-icon icon="save"></fa-icon
+								><span class="mx-2">Last update:</span>
+								<span class="ml-auto">{{
+									itemModel.updated_at
+										| amParse: "YYYY-MM-DD hh:mm:ss"
+										| amDateFormat: "DD. MM. YYYY, hh:mm"
+								}}</span>
+							</span>
+							<span class="d-flex">
+								<fa-icon icon="pencil-alt"></fa-icon
+								><span class="mx-2">Změněno:</span>
+								<span *ngIf="itemForm.dirty" class="ml-auto"
+									>Ano</span
+								>
+								<span *ngIf="!itemForm.dirty" class="ml-auto"
+									>Ne</span
+								>
+							</span>
+						</li>
+					</ul>
+				</div>
+				<div class="card-footer border-top">
+					<div class="row">
+						<div class="col">
+							<input
+								type="submit"
+								class="btn btn-success pull-right"
+								[disabled]="
+									!itemForm.form.valid || !itemForm.dirty
+								"
+								value="Save"
+								(click)="onSubmit(itemModel, false)"
+							/>
+							<input
+								*ngIf="!showSaveNewButton"
+								class="btn btn-success pull-right mr-2"
+								[disabled]="
+									!itemForm.form.valid || !itemForm.dirty
+								"
+								type="submit"
+								value="Save & stay"
+								(click)="onSubmit(itemModel, true)"
+							/>
+							<input
+								*ngIf="showSaveNewButton"
+								class="btn btn-success pull-right mr-2"
+								[disabled]="
+									!itemForm.form.valid || !itemForm.touched
+								"
+								type="submit"
+								value="Save & new"
+								(click)="onSubmit(itemModel, true)"
+							/>
+							<a
+								routerLink="/admin/item"
+								class="btn btn-secondary"
+								>Cancel</a
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card card-small">
+				<div class="card-header border-bottom">
+					<h6 class="m-0">Categories</h6>
+				</div>
+				<div class="card-body">
+					<multi-select
+						name="categories"
+						[data]="allCategories"
+						[label_property_name]="'name'"
+						[(ngModel)]="itemModel.categories"
+						ngDefaultControl
+						required
+					></multi-select>
+				</div>
+				<div class="card-footer">
+					<div class="row">
+						<div class="col text-right"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

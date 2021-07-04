@@ -1,0 +1,17 @@
+<div
+	class="card card-small card-post h-100 zoom shadow-lg item-card"
+	(click)="openItemDetail(item.id)"
+>
+	<div
+		class="card-post__image"
+		style="background-image: url('api/{{ item.filename }}');"
+	></div>
+	<div class="card-body">
+		<h5 class="card-title">
+			<span class="text-fiord-blue" href="#">{{ item.name }}</span>
+		</h5>
+		<p class="card-text">
+			{{ item.latin_name }}
+		</p>
+	</div>
+</div>
