@@ -19,6 +19,7 @@ export class AddItemComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
+		this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 	}
 
 	onSubmit(item, navigate) {
@@ -28,12 +29,10 @@ export class AddItemComponent implements OnInit {
 
 		this.itemService.create(formData).subscribe(
 			res => {
-				console.log(res);
 				this.notify.success('Success', 'New Item has been added successfully');
 				if (navigate) {
 					this.router.navigate(['/admin/add-item']);
 				} else {
-					this.newItem = new Item(null, '');
 					this.router.navigate(['/admin/item']);
 				}
 			},

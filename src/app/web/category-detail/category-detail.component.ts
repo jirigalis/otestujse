@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../../core/services/category.service';
 import { Category } from '../../core/models/category.model';
 import { NotificationsService } from 'angular2-notifications';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Item } from 'src/app/core/models/item.model';
+import { Item } from '../../core/models/item.model';
 
 @Component({
 	templateUrl: './category-detail.component.html',
@@ -16,6 +16,7 @@ export class CategoryDetailComponent implements OnInit {
 
 	constructor(
 		private route: ActivatedRoute
+		, private router: Router
 		, private categoryService: CategoryService
 		, private notify: NotificationsService
 		, public DomSanitizerService: DomSanitizer
@@ -32,6 +33,10 @@ export class CategoryDetailComponent implements OnInit {
 		this.categoryService.getItemThumbnails(categoryId, 5).subscribe(thumbnails => {
 			this.thumbnails = thumbnails;
 		});
+	}
+
+	backToCategories() {
+		this.router.navigate(['categories']);
 	}
 
 }

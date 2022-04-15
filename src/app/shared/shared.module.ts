@@ -10,6 +10,7 @@ import { ImagePipe } from './pipes/image.pipe';
 import { MustMatchDirective } from './directives/must-match/must-match.directive';
 import { CategoryThumbnailComponent } from './components/category-thumbnail/category-thumbnail.component';
 import { ItemThumbnailComponent } from './components/item-thumbnail/item-thumbnail.component';
+import { ItemImageComponent } from './components/item-image/item-image.component';
 
 @NgModule({
 	imports: [
@@ -25,7 +26,7 @@ import { ItemThumbnailComponent } from './components/item-thumbnail/item-thumbna
 		, ImagePipe
 		, MustMatchDirective
 		, CategoryThumbnailComponent
-		, ItemThumbnailComponent
+		, ItemThumbnailComponent, ItemImageComponent
 	],
 	exports: [
 		CustomModalComponent
